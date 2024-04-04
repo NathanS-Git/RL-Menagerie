@@ -3,7 +3,6 @@ My personal implementations of several reinforcement learning algorithms.
 - [x] DQN
 - [ ] PPO
 - [x] VPG
-- [x] DQN
 - [ ] SAC
 - [x] A2C
 - [ ] TD3
