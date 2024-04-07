@@ -1,11 +1,13 @@
 My personal implementations of several reinforcement learning algorithms.
+Just note however, that my implementations may deviate from the papers slightly - for personal educational reasons. Witht that said, if you see something architecturally incorrect with one of my implementations, please do let me know. 
 
 - [x] DQN
 - [ ] PPO
-- [ ] VPG
+- [x] VPG
 - [ ] SAC
-- [ ] A2C
+- [x] A2C
 - [ ] TD3
 - [ ] DDPG
+- [ ] TRPO
 - [ ] Rainbow-DQN (Can't wait for this one tbh)
 

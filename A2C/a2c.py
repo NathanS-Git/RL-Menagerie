@@ -16,7 +16,7 @@ class Actor(nn.Module):
             nn.Linear(128,128),
             nn.GELU(),
             nn.Linear(128, env.action_space.n),
-            nn.Softmax()
+            nn.Softmax(-1)
         )
 
     def forward(self, input: torch.Tensor):
@@ -83,7 +83,7 @@ def main():
 
         prev_discounted_return = 0
         all_returns = deque([])
-        for t in range(len(rewards)-1,-1,-1):
+        for t in reversed(range(len(rewards))):
             discounted_return = rewards[t] + gamma*prev_discounted_return
             prev_discounted_return = discounted_return
             all_returns.appendleft(discounted_return)
@@ -93,15 +93,12 @@ def main():
         discounted_returns_pt = (discounted_returns_pt - discounted_returns_pt.mean()) / (discounted_returns_pt.std() + 1e-6)
         advantage = discounted_returns_pt - values_pt
         policy_loss = (torch.stack(logprobs).unsqueeze(1) * advantage.detach()).mean()
-        value_loss = 0.5*advantage.square().mean()
+        value_loss = advantage.square().mean()
         
-        #combined = value_loss+ policy_loss
-
         value_optim.zero_grad()
         policy_optim.zero_grad()
         value_loss.backward()
         policy_loss.backward()
-        #combined.backward()
         value_optim.step()
         policy_optim.step()
 
