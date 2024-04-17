@@ -13,7 +13,7 @@ class Actor(nn.Module):
             nn.Linear(64,64),
             nn.Tanh(),
             nn.Linear(64,env.action_space.n),
-            nn.Softmax()
+            nn.Softmax(-1)
         )
 
     def forward(self, input):
