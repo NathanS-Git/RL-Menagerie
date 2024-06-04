@@ -1,0 +1,1 @@
+Testing out how well A2C can perform without any sort of gradient accumulation or minibatch gradient descent. Purely stochastic -- after every move, the weights of the network are updated using the data from that most recent move only.
